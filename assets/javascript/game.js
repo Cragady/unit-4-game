@@ -6,3 +6,9 @@
 //scroll bar that pushes the new information at the
 //bottom with the older logs scrolling out of view
 //at the top
+
+/* use variables to keep track of scoring, and 
+a switching true/false variable to trigger
+a variable reset in the event of winning/losing
+or active fight */
+
