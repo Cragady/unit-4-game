@@ -12,3 +12,19 @@ a switching true/false variable to trigger
 a variable reset in the event of winning/losing
 or active fight */
 
+/* instead of using css, just use the detach and 
+like in the function below make use of prepend append 
+and after. Or use a for loop for appending/prepending*/
+
+$(document).ready(function(){
+    $pic1 = $("#pic1").detach();
+    $("#rchallengers").append($pic1);
+    console.log("scripted");
+
+    $(document).on("click", function(){
+        $pic1;
+        $("#pictures-row").append($pic1);
+        console.log("clicked!");
+    })
+
+});
