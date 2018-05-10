@@ -51,3 +51,38 @@ and after. Or use a for loop for appending/prepending*/
 
 //the above is a working example of how to move around
 //clicked pictures 
+var newDiv = $("<div>");
+var readyChar = $("#pictures-row");
+var sfc = ["pic1", "pic2", "pic3", "pic4"];
+var chosenChar = false;
+var chosenEnem = false;
+var enemSet = false;
+// var movingPictures = $("#pictures-row").detach();
+
+$(document).ready(function(){
+    readyChar.append(newDiv.text("Choose your Character!"));
+    $("div").click(function(){
+        var selected = $(this).attr("id");
+        if ((sfc.includes(selected))){
+            if (chosenChar === false){
+                $(this).detach();
+                $("#player-char").append(this);
+                newDiv.empty();
+                readyChar.append(newDiv.text("Choose your enemy!"));
+                chosenChar = true;
+            } else if ((chosenChar === true) && (chosenEnem === false)){
+                $(this).detach();
+                $("#opponent").append(this);
+                newDiv.empty();
+                $("#pictures-row").css("display", "none");
+                chosenEnem = true;
+                //code here to extract damage, healt, etc.
+                enemSet = true;
+            }
+        }
+        // if (enemSet === true){
+        //     $("#pictures-row").css("display", "flex");
+        //     this is for later.
+        // }
+    })
+});
