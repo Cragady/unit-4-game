@@ -29,29 +29,34 @@ only the fighters/scoring/log is visible-->
             <section class="row">
                 <div id="main-row-pics" class="col-12 text-center">
                     <div id="pictures-row" class="row">
-                        <div id="pic1" class="card px-0 col-3">
+                        <div id="pic1" class="card px-0 col-3" data-stats='["130", "25", "10"]'>
                             <p class="card-title">Mace Windu</p>
-                            <img id="pic1" class="fighters" src="assets/images/Mace-Windu_b35242e5.jpeg" alt="Mace Windu">
+                            <img class="fighters" src="assets/images/Mace-Windu_b35242e5.jpeg" alt="Mace Windu">
                             <p class="card-text" data-health="130">130</p>
                         </div>
                         <div id="pic2" class="card px-0 col-3">
                             <p class="card-title">Count Dooku</p>
                             <img class="fighters" src="assets/images/Count_Dooku.png" alt="Count Dooku">
-                            <p class="card-text" data-health="100">100</p>
+                            <p class="card-text" value="100">100</p>
                         </div>
                         <div id="pic3" class="card px-0 col-3">
                             <p class="card-title">Qui-Gon Jinn</p>
                             <img class="fighters" src="assets/images/Quigonheadshot.jpg" alt="Qui-Gon Jinn">
-                            <p class="card-text" data-health="115">115</p>
+                            <p class="card-text" value="115">115</p>
                         </div>
                         <div id="pic4" class="card px-0 col-3">                        
                             <p class="card-title">Darth Sidious</p>
                             <img class="fighters" src="assets/images/DarthSidiousWallpaper.jpg" alt="Darth Sidious">
-                            <p class="card-text" data-health="180">180</p>
+                            <p class="card-text" value="180">180</p>
                         </div>
                     </div>
                 </div>
-                <div id="rchallengers" class="row col-12 text-center"></div>
+
+                <div class="col-12 text-center">
+                    <div class="row">
+                        <div id="rchallengers"></div>
+                    </div>
+                </div>
             </section>
 
             <section class="row">
@@ -63,11 +68,18 @@ only the fighters/scoring/log is visible-->
                     <div id="opponent"></div>
                 </div>
 
+                <div id="atk-btn" class="col-12">
+                    <button class="btn btn-danger">Attack!!</button>
+                </div>
+                <div id="rst-btn" class="col-12">
+                    <button class="btn btn-info">Restart</button>
+                </div>
+
             </section>
 
             <section class="row container">
-                <div id="fight-log">content</div>
-                <div class="col-12">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam impedit iusto ex numquam nemo repellendus illo, corporis quod earum reprehenderit obcaecati odit a blanditiis, quo architecto dolore tempore voluptates consequatur?</div>
+                <div class="col-12"></div>
+                <div id="fight-log" class="col-12">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam impedit iusto ex numquam nemo repellendus illo, corporis quod earum reprehenderit obcaecati odit a blanditiis, quo architecto dolore tempore voluptates consequatur?</div>
             </section>
 
         </div>

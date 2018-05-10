@@ -26,6 +26,14 @@ when you get further along in the project*/
     display: none;
 }
 
+.btn{
+    max-width: 150px;
+}
+
+#atk-btn, #rst-btn{
+    display: none;
+}
+
 
 
 /* #main-row-pics{
