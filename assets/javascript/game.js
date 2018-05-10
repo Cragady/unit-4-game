@@ -16,15 +16,38 @@ or active fight */
 like in the function below make use of prepend append 
 and after. Or use a for loop for appending/prepending*/
 
-$(document).ready(function(){
-    $pic1 = $("#pic1").detach();
-    $("#rchallengers").append($pic1);
-    console.log("scripted");
+// $(document).ready(function(){
 
-    $(document).on("click", function(){
-        $pic1;
-        $("#pictures-row").append($pic1);
-        console.log("clicked!");
-    })
 
-});
+//     //$pic1 = $("#pic1").detach();
+//     $pic1 = $("#pictures-row").detach();
+//     //$("#rchallengers").append($pic1);
+//     $("#fight-log").append($pic1);
+//     console.log("scripted");
+
+//     $("#pic1").on("click", function(){
+//         $pic1;
+//         $("#pictures-row").append($pic1);
+//         console.log("clicked!");
+//         // sfc = ["#pic1", "#pic2", "#pic3", "#pic4"];
+//         // $("#pictures-row").each(sfc, function(){
+//         //     if ()
+//         // });
+//     })
+
+//     $("div").on("click", function(){
+//         sfc = ["pic1", "pic2", "pic3", "pic4"];
+//         var selected = $(this).attr("id");
+//         if (sfc.includes(selected)){
+//             //$("#pictures-row").prepend(this);
+//             $(this).detach();
+//             $("#rchallengers").append(this);
+//             $("#fight-log").append($("#pictures-row"));
+//             console.log(selected);
+//         };
+//     });
+
+// });
+
+//the above is a working example of how to move around
+//clicked pictures 
