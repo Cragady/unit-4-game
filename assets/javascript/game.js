@@ -108,6 +108,17 @@ $(document).ready(function(){
 
     $("#atk-btn").click(function(){
         if (enemSet === true){
+            if ((charHealth <= 0) || (enemHealth <= 0)){
+                if (charHealth <= 0){
+                    $("#player-char").find(".health-show").text(0);
+                    console.log("doh!");
+                } else if (enemHealth <= 0){
+                    $("#opponent").find(".health-show").text(0);
+                    console.log("yepper-diddly-do!!")
+                };
+                console.log("donerundo");
+                return;
+            };
             var dmgGiv = Math.floor(Math.random() * charAttack);
             var dmgRec = Math.floor(Math.random() * enemCounter);
             charHealth -= dmgRec;
