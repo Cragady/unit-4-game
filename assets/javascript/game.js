@@ -54,6 +54,7 @@ and after. Or use a for loop for appending/prepending*/
 var newHead = $("<h2>");
 var readyChar = $("#pictures-row");
 var sfc = ["pic1", "pic2", "pic3", "pic4"];
+var pickedChar = [];
 var charStats = "";
 var charHealth = "";
 var charAttack = "";
@@ -64,39 +65,63 @@ var chosenChar = false;
 var chosenEnem = false;
 var enemSet = false;
 var gameOver = true;
+var selected;
+var statted;
+var altThis;
 // var movingPictures = $("#pictures-row").detach();
+
+function chooseChar(){
+        $(altThis).detach();
+        $("#player-char").append(altThis);
+        newHead.empty();
+        newHead.attr("class", "col-12 text-danger");
+        readyChar.append(newHead.text("Choose your enemy!"));
+        charStats = statted;
+        charHealth = charStats[0];
+        charAttack = charStats[1];
+        chosenChar = true;
+        pickedChar.push(selected);
+};
+
+function chooseEnem(){
+    if ((chosenEnem === false) || (chosenEnem === undefined)){
+        chosenEnem = true;
+        enemSet = true;
+    };
+    $("#pictures-row").css("display", "flex");
+    if (pickedChar.includes(selected)){
+        return;
+    };
+    $(altThis).detach();
+    $("#opponent").append(altThis);
+    newHead.empty();
+    $("#pictures-row").css("display", "none");
+    enemStats = statted;
+    enemHealth = enemStats[0];
+    enemCounter = enemStats[2];
+    pickedChar.push(selected);
+};
 
 $(document).ready(function(){
     readyChar.append(newHead.text("Choose your Character!"));
     newHead.attr("class", "col-12 text-info");
     $("div").click(function(){
-        var selected = $(this).attr("id");
+        
+        selected = $(this).attr("id");
         if ((sfc.includes(selected))){
+            
             if (chosenChar === false){
-                $(this).detach();
-                $("#player-char").append(this);
-                newHead.empty();
-                newHead.attr("class", "col-12 text-danger");
-                readyChar.append(newHead.text("Choose your enemy!"));
-                charStats = $(this).data('stats');
-                charHealth = charStats[0];
-                charAttack = charStats[1];
-                chosenChar = true;
+                statted = $(this).data('stats');
+                altThis = this;
+                chooseChar();
             } else if ((chosenChar === true) && (chosenEnem === false)){
-                $("#pictures-row").css("display", "flex");
-                $(this).detach();
-                $("#opponent").append(this);
-                newHead.empty();
-                $("#pictures-row").css("display", "none");
-                chosenEnem = true;
-                enemStats = $(this).data('stats');
-                enemHealth = enemStats[0];
-                enemCounter = enemStats[2];
-                enemSet = true;
+                statted = $(this).data('stats');
+                altThis = this;
+               chooseEnem();
             }
         };
 
-        if (enemSet === true){
+        if ((enemSet === true) && (charHealth > 0)){
             $("#atk-btn").css("display", "flex");
             $("#rst-btn").css("display", "flex");
         };
@@ -108,24 +133,27 @@ $(document).ready(function(){
 
     $("#atk-btn").click(function(){
         if (enemSet === true){
-            if ((charHealth <= 0) || (enemHealth <= 0)){
-                if (charHealth <= 0){
-                    $("#player-char").find(".health-show").text(0);
-                    console.log("doh!");
-                } else if (enemHealth <= 0){
-                    $("#opponent").find(".health-show").text(0);
-                    console.log("yepper-diddly-do!!")
-                };
-                console.log("donerundo");
-                return;
-            };
+            
             var dmgGiv = Math.floor(Math.random() * charAttack);
             var dmgRec = Math.floor(Math.random() * enemCounter);
             charHealth -= dmgRec;
             enemHealth -= dmgGiv;
-            $(".health-show").empty();
             $("#player-char").find(".health-show").text(charHealth);
             $("#opponent").find(".health-show").text(enemHealth);
+            if (charHealth <= 0){
+                $("#player-char").find(".health-show").text(0);
+                $("#rst-btn").css("display", "flex");
+                $("#atk-btn").css("display", "none");
+            } else if (enemHealth <= 0){
+                $("#opponent").find(".health-show").text(0);
+                $("#atk-btn").css("display", "none");
+                enemSet = undefined;
+                chosenEnem = undefined;
+                //charAttack += 15;
+                newHead.attr("class", "col-12 text-danger");
+                readyChar.append(newHead.text("Choose your enemy!"));
+                $("#opponent").children().css("display", "none");
+            };                
             
         };
     });
@@ -141,17 +169,33 @@ $(document).ready(function(){
             chosenChar = false;
             chosenEnem = false;
             enemSet = false;
+            pickedChar = [];
             //gameOver = false;
             $.each(sfc, function(i){
                 var resetPicPos = $("#" + sfc[i]);
+                resetPicPos.css("display", "flex");
                 $("#pictures-row").append(resetPicPos);
-                console.log(sfc[i]);
             });
             $.each(sfc, function(i){
                 var resetHealthShow = $("#" + sfc[i]);
                 var dataHealthSelector = $(resetHealthShow).data('stats');
                 $(resetHealthShow).find(".health-show").text(dataHealthSelector[0]);
-                console.log(sfc[i]);
+            });
+            readyChar.append(newHead.text("Choose your Character!"));
+            newHead.attr("class", "col-12 text-info");
+        };
+    });
+
+    $(document).click(function(){
+        if((enemSet === undefined) && (chosenEnem === undefined)){
+            $("#pictures-row").css("display", "flex");
+            $("div").click(function(){
+                selected = $(this).attr("id");
+                if ((sfc.includes(selected))){
+                    statted = $(this).data('stats');
+                    altThis = this;
+                    chooseEnem();
+                };
             });
         };
     });
