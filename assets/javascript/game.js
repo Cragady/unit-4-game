@@ -54,8 +54,12 @@ and after. Or use a for loop for appending/prepending*/
 var newHead = $("<h2>");
 var readyChar = $("#pictures-row");
 var sfc = ["pic1", "pic2", "pic3", "pic4"];
-var charHealth = "";
 var charStats = "";
+var charHealth = "";
+var charAttack = "";
+var enemStats = "";
+var enemHealth = "";
+var enemCounter = "";
 var chosenChar = false;
 var chosenEnem = false;
 var enemSet = false;
@@ -76,14 +80,18 @@ $(document).ready(function(){
                 readyChar.append(newHead.text("Choose your enemy!"));
                 charStats = $(this).data('stats');
                 charHealth = charStats[0];
+                charAttack = charStats[1];
                 chosenChar = true;
             } else if ((chosenChar === true) && (chosenEnem === false)){
+                $("#pictures-row").css("display", "flex");
                 $(this).detach();
                 $("#opponent").append(this);
                 newHead.empty();
                 $("#pictures-row").css("display", "none");
                 chosenEnem = true;
-                //code here to extract damage, health, etc.
+                enemStats = $(this).data('stats');
+                enemHealth = enemStats[0];
+                enemCounter = enemStats[2];
                 enemSet = true;
             }
         };
@@ -92,32 +100,46 @@ $(document).ready(function(){
             $("#atk-btn").css("display", "flex");
             $("#rst-btn").css("display", "flex");
         };
-
-        
-        //  if (enemSet === true){
-        //      $("#pictures-row").css("display", "flex");
-        //      //this is for later.
-        //      $.each(sfc, function(i){
-        //          var tar = $("#" + sfc[i]);
-        //          $("#pictures-row").append(tar);
-        //          //and this will be good for reset
-        //          //btw, prolly don't use var "tar"
-        //          console.log(sfc[i]);
-        //      })
-        //  }
+        if (enemSet === false){
+            $("#atk-btn").css("display", "none");
+            $("#rst-btn").css("display", "none");
+        }
     });
+
     $("#atk-btn").click(function(){
         if (enemSet === true){
-            charHealth--;
-            console.log(charHealth);
+            var dmgGiv = Math.floor(Math.random() * charAttack);
+            var dmgRec = Math.floor(Math.random() * enemCounter);
+            charHealth -= dmgRec;
+            enemHealth -= dmgGiv;
+            $(".health-show").empty();
+            $("#player-char").find(".health-show").text(charHealth);
+            $("#opponent").find(".health-show").text(enemHealth);
+            
         };
     });
+
     $("#rst-btn").click(function() {
         if (gameOver === true){
             $("#pictures-row").css("display", "flex");
+            charHealth = "";
+            charAttack = "";
+            enemStats = "";
+            enemHealth = "";
+            enemCounter = "";
+            chosenChar = false;
+            chosenEnem = false;
+            enemSet = false;
+            //gameOver = false;
             $.each(sfc, function(i){
                 var resetPicPos = $("#" + sfc[i]);
                 $("#pictures-row").append(resetPicPos);
+                console.log(sfc[i]);
+            });
+            $.each(sfc, function(i){
+                var resetHealthShow = $("#" + sfc[i]);
+                var dataHealthSelector = $(resetHealthShow).data('stats');
+                $(resetHealthShow).find(".health-show").text(dataHealthSelector[0]);
                 console.log(sfc[i]);
             });
         };
