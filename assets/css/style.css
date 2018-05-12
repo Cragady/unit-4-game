@@ -18,6 +18,10 @@
     overflow: auto;
 }
 
+#fight-log:nth-child(even){
+    background: rgb(240, 230, 230);
+}
+
 #atk-btn, #rst-btn{
     display: none;
 }

@@ -58,8 +58,7 @@ var gameFunk = {
 
     battleLog: function(){
         var loggedDmg = $("<div>").text("You deal " + dmgGiv + " amount of damage, and you take " + dmgRec +" amount of damage.");
-        var loggedStagger = $("<div>:nth-child(even)").css("background", "rgb(202, 198, 198)");
-        $("#fight-log").prepend(loggedDmg).$("div:nth-child(even)").css("background", "rgb(202, 198, 198)");
+        $("#fight-log").prepend(loggedDmg, "<hr>");
     }
 };
 
