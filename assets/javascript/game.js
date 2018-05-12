@@ -152,6 +152,7 @@ $(document).ready(function(){
             newHead.attr("class", "col-12 text-info");
             $("#pictures-row").css("display", "flex");
             $("#rst-btn").css("display", "none");
+            $("#fight-log").empty();
     });
 
     $("div").click(function(){
