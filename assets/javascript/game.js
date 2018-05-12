@@ -57,7 +57,7 @@ var gameFunk = {
     },
 
     battleLog: function(){
-        var loggedDmg = $("<div>").text("You deal " + dmgGiv + " amount of damage, and you take " + dmgRec +" amount of damage.");
+        var loggedDmg = $("<div>").text("You deal " + dmgGiv + " damage, and you take " + dmgRec +" damage.");
         $("#fight-log").prepend(loggedDmg, "<hr>");
     }
 };
