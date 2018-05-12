@@ -1,12 +1,3 @@
-/*this is a test, delete the .col-6{display:none}*/
-/* .col-6{
-    display: none;
-} */
-/*the above is a test, be sure to take it out
-when you get further along in the project*/
-
-
-
 .fighters{
     height: 150px;
     min-width: 133px;
@@ -18,24 +9,15 @@ when you get further along in the project*/
     max-width: 133px;
 }
 
-.force-show{
-    display: inline-block !important;
-}
-
-.force-hide{
-    display: none;
-}
-
 .btn{
     max-width: 150px;
+}
+
+#fight-log{
+    max-height: 200px;
+    overflow: auto;
 }
 
 #atk-btn, #rst-btn{
     display: none;
 }
-
-
-
-/* #main-row-pics{
-    display: none;
-} */

@@ -14,6 +14,8 @@ var charAttack = "";
 var enemStats = "";
 var enemHealth = "";
 var enemCounter = "";
+var dmgGiv = "";
+var dmgRec = "";
 var chosenChar = false;
 var chosenEnem = false;
 var enemSet = false;
@@ -52,7 +54,12 @@ var gameFunk = {
     enemHealth = enemStats[0];
     enemCounter = enemStats[2];
     pickedChar.push(selected);
-    console.log("premature function run")
+    },
+
+    battleLog: function(){
+        var loggedDmg = $("<div>").text("You deal " + dmgGiv + " amount of damage, and you take " + dmgRec +" amount of damage.");
+        var loggedStagger = $("<div>:nth-child(even)").css("background", "rgb(202, 198, 198)");
+        $("#fight-log").prepend(loggedDmg).$("div:nth-child(even)").css("background", "rgb(202, 198, 198)");
     }
 };
 
@@ -81,10 +88,11 @@ $(document).ready(function(){
     $("#atk-btn").click(function(){
         if (chosenEnem === true){
             
-            var dmgGiv = Math.floor(Math.random() * charAttack) + attackAdd;
-            var dmgRec = Math.floor(Math.random() * enemCounter);
+            dmgGiv = Math.floor(Math.random() * charAttack) + attackAdd;
+            dmgRec = Math.floor(Math.random() * enemCounter);
             charHealth -= dmgRec;
             enemHealth -= dmgGiv;
+            gameFunk.battleLog();
             $("#player-char").find(".health-show").text(charHealth);
             $("#opponent").find(".health-show").text(enemHealth);
             if (charHealth <= 0){
@@ -154,7 +162,6 @@ $(document).ready(function(){
             };
             $("#pictures-row").css("display", "flex");
             selected = $(this).attr("id");
-            console.log(selected);
             if ((sfc.includes(selected))){
                 statted = $(this).data('stats');
                 altThis = this;
