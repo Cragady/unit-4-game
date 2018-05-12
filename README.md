@@ -65,4 +65,32 @@ Variables are declared for enemy stats and the chosen enemy is logged in `picked
 
 `#atk-btn` is targeted and given a click function. Inside the click function, an if statement is passed, checking if an enemy has been picked. 
 
-Damage given and damaged received are set to variables utilizing functions to randomly give damage using the `data-stats` set in the characters html, and read in the `chooseEnem` and `chooseChar` methods.
+Damage given and damaged received are set to variables utilizing functions to randomly give damage using the `data-stats` set in the characters html, and read in the `chooseEnem` and `chooseChar` methods. After each click, the character health is properly reflected under the character's and enemy's card.
+
+  * *The three `if` statements:*
+
+    * The first `if` statement displays the reset button and lets the user know that they lost if they've lost all their health, and hides the attack button so the user can't continue the game without restarting.
+
+    * The second `if` statement checks if the enemy has lost all their health. It then adds guaranteed 12 damage per turn and tells the user to choose your next enemy and removes the defeated enemy. There is an `if statement in here to check if all of the possible enemies has been defeated.
+
+    * The third `if` statement, checks to see if the user and enemy has lost all of their health at the same time, and notifies a tie
+
+<hr>
+
+**resetButton**<hr>
+
+All of the variables are set back to a state to allow for a new round without having unexpected interactions, `$.each()` loops are used to reset the positioning of the characters, and their showed health to reverse the `.detach()` functions. The reset button is set not to show and the fight log is emptied.
+
+<hr>
+
+**chooseAgainEnem**<hr>
+
+The `chooseAgainEnem`'s code is put in a click function, to check the requirements on each click. The first if statement checks to see if the user hasn't defeated all the available enemies and that the user still has health before executing the rest of the code.
+
+`#pictures-row` is set to display, and the appropriate selectors and if statements are used to allow the `chooseEnem` statement to function correctly when called in `chooseAgainEnem`.
+
+<hr>
+
+**$(document).ready()**<hr>
+
+Calls the `gameStart` method to run the game.
