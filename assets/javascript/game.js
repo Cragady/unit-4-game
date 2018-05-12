@@ -69,8 +69,8 @@ var selected;
 var statted;
 var altThis;
 // var movingPictures = $("#pictures-row").detach();
-
-function chooseChar(){
+var gameFunk = {
+    chooseChar: function(){
         $(altThis).detach();
         $("#player-char").append(altThis);
         newHead.empty();
@@ -80,59 +80,95 @@ function chooseChar(){
         charHealth = charStats[0];
         charAttack = charStats[1];
         chosenChar = true;
+        chosenEnem = false;
+        // $("#pictures-row").click(function(){
+        //     chosenEnem = false;
+        // });
         pickedChar.push(selected);
-};
+    },
 
-function chooseEnem(){
-    if ((chosenEnem === false) || (chosenEnem === undefined)){
-        chosenEnem = true;
-        enemSet = true;
-    };
-    $("#pictures-row").css("display", "flex");
+    chooseEnem: function(){
     if (pickedChar.includes(selected)){
         return;
     };
+    $("#pictures-row").css("display", "flex");
     $(altThis).detach();
     $("#opponent").append(altThis);
     newHead.empty();
     $("#pictures-row").css("display", "none");
+    chosenEnem = true;
     enemStats = statted;
     enemHealth = enemStats[0];
     enemCounter = enemStats[2];
     pickedChar.push(selected);
+    console.log("premature function run")
+    }
 };
+// function chooseChar(){
+//         $(altThis).detach();
+//         $("#player-char").append(altThis);
+//         newHead.empty();
+//         newHead.attr("class", "col-12 text-danger");
+//         readyChar.append(newHead.text("Choose your enemy!"));
+//         charStats = statted;
+//         charHealth = charStats[0];
+//         charAttack = charStats[1];
+//         chosenChar = true;
+//         chosenEnem = undefined;
+//         // $("#pictures-row").click(function(){
+//         //     chosenEnem = false;
+//         // });
+//         pickedChar.push(selected);
+// };
+
+// function chooseEnem(){
+//     $("#pictures-row").css("display", "flex");
+//     if (pickedChar.includes(selected)){
+//         return;
+//     };
+//     $(altThis).detach();
+//     $("#opponent").append(altThis);
+//     newHead.empty();
+//     $("#pictures-row").click(function(){
+//         $("#pictures-row").css("display", "none");
+//         chosenEnem = true;
+//     });
+//     enemStats = statted;
+//     enemHealth = enemStats[0];
+//     enemCounter = enemStats[2];
+//     pickedChar.push(selected);
+// };
 
 $(document).ready(function(){
     readyChar.append(newHead.text("Choose your Character!"));
     newHead.attr("class", "col-12 text-info");
-    $("div").click(function(){
-        
+    $("div").children().click(function(){
         selected = $(this).attr("id");
         if ((sfc.includes(selected))){
             
             if (chosenChar === false){
                 statted = $(this).data('stats');
                 altThis = this;
-                chooseChar();
+                gameFunk.chooseChar();
             } else if ((chosenChar === true) && (chosenEnem === false)){
                 statted = $(this).data('stats');
                 altThis = this;
-               chooseEnem();
+               gameFunk.chooseEnem();
             }
         };
 
-        if ((enemSet === true) && (charHealth > 0)){
+        if ((chosenEnem === true) && (charHealth > 0)){
             $("#atk-btn").css("display", "flex");
             $("#rst-btn").css("display", "flex");
         };
-        if (enemSet === false){
-            $("#atk-btn").css("display", "none");
-            $("#rst-btn").css("display", "none");
-        }
+        // if (chosenEnem === false){
+        //     $("#atk-btn").css("display", "none");
+        //     $("#rst-btn").css("display", "none");
+        // }
     });
 
     $("#atk-btn").click(function(){
-        if (enemSet === true){
+        if (chosenEnem === true){
             
             var dmgGiv = Math.floor(Math.random() * charAttack);
             var dmgRec = Math.floor(Math.random() * enemCounter);
@@ -147,7 +183,6 @@ $(document).ready(function(){
             } else if (enemHealth <= 0){
                 $("#opponent").find(".health-show").text(0);
                 $("#atk-btn").css("display", "none");
-                enemSet = undefined;
                 chosenEnem = undefined;
                 //charAttack += 15;
                 newHead.attr("class", "col-12 text-danger");
@@ -159,8 +194,6 @@ $(document).ready(function(){
     });
 
     $("#rst-btn").click(function() {
-        if (gameOver === true){
-            $("#pictures-row").css("display", "flex");
             charHealth = "";
             charAttack = "";
             enemStats = "";
@@ -168,7 +201,6 @@ $(document).ready(function(){
             enemCounter = "";
             chosenChar = false;
             chosenEnem = false;
-            enemSet = false;
             pickedChar = [];
             //gameOver = false;
             $.each(sfc, function(i){
@@ -183,20 +215,19 @@ $(document).ready(function(){
             });
             readyChar.append(newHead.text("Choose your Character!"));
             newHead.attr("class", "col-12 text-info");
-        };
+            $("#pictures-row").css("display", "flex");
     });
 
-    $(document).click(function(){
-        if((enemSet === undefined) && (chosenEnem === undefined)){
+    $("div").click(function(){
+        if(chosenEnem === undefined){
             $("#pictures-row").css("display", "flex");
-            $("div").click(function(){
-                selected = $(this).attr("id");
-                if ((sfc.includes(selected))){
-                    statted = $(this).data('stats');
-                    altThis = this;
-                    chooseEnem();
-                };
-            });
+            selected = $(this).attr("id");
+            console.log(selected);
+            if ((sfc.includes(selected))){
+                statted = $(this).data('stats');
+                altThis = this;
+                gameFunk.chooseEnem();
+            };
         };
     });
 });
