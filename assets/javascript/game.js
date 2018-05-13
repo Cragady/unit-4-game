@@ -29,7 +29,7 @@ var gameFunk = {
 
     gameStart: function(){
         readyChar.append(newHead.text("Choose your Character!"));
-        newHead.attr("class", "col-12 text-info");
+        newHead.attr("class", "col-12");
         $("div").children().click(function(){
             selected = $(this).attr("id");
             if ((sfc.includes(selected))){  
@@ -46,6 +46,9 @@ var gameFunk = {
 
             if ((chosenEnem === true) && (charHealth > 0)){
                 $("#atk-btn").css("display", "flex");
+                $("body").css("background", "url(assets/images/Ludo_in_the_Wild_concept_8.png)");
+                $("body").css("background-size", "100% 100%");
+                $("body").css("background-repeat: no-repeat");
             };
         });
 
@@ -106,6 +109,9 @@ var gameFunk = {
                     $("#player-char").find(".health-show").text(0);
                     $("#rst-btn").css("display", "flex");
                     $("#atk-btn").css("display", "none");
+                    $("body").css("background", "url(assets/images/flat,800x800,070,f.u2.jpg)");
+                    $("body").css("background-size", "100% 100%");
+                    $("body").css("background-repeat: no-repeat");
                     if (enemHealth > 0){
                         $("#buttonInOut").prepend(newHead.text("You lost!"));
                         newHead.attr("class", "col-12 text-center text-danger");
@@ -115,6 +121,9 @@ var gameFunk = {
                 if (enemHealth <= 0){
                     $("#opponent").find(".health-show").text(0);
                     $("#atk-btn").css("display", "none");
+                    $("body").css("background", "url(assets/images/flat,800x800,070,f.u2.jpg)");
+                    $("body").css("background-size", "100% 100%");
+                    $("body").css("background-repeat: no-repeat");
                     chosenEnem = undefined;
                     attackAdd += 12;
                     newHead.attr("class", "col-12 text-danger");
@@ -159,7 +168,7 @@ var gameFunk = {
                 $(resetHealthShow).find(".health-show").text(dataHealthSelector[0]);
             });
             readyChar.append(newHead.text("Choose your Character!"));
-            newHead.attr("class", "col-12 text-info");
+            newHead.attr("class", "col-12");
             $("#pictures-row").css("display", "flex");
             $("#rst-btn").css("display", "none");
             $("#fight-log").empty();

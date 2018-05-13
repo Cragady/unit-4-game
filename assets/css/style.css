@@ -1,12 +1,37 @@
+html, body {
+    height: 100%;
+}
+
+h1{
+    text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+    color: purple;
+}
+
+h2{
+    background: rgba(228, 77, 178, 0.712);
+    color: rgba(66, 236, 74, 0.822);
+}
+
+body{
+    background: url(../images/flat,800x800,070,f.u2.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
 .fighters{
     height: 150px;
     min-width: 133px;
     max-width: 133px;
 }
 
+#pictures-row{
+    background: rgba(188, 139, 245, 0.918);
+}
+
 .card{
     min-width: 133px;
     max-width: 133px;
+    overflow: none;
 }
 
 .btn{
@@ -24,4 +49,8 @@
 
 #atk-btn, #rst-btn{
     display: none;
+}
+
+.wrap{
+    min-height: 100%;
 }
