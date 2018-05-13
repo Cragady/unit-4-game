@@ -109,6 +109,7 @@ var gameFunk = {
                 if (charHealth <= 0){
                     $("#player-char").find(".health-show").text(0);
                     $("#rst-btn").css("display", "flex");
+                    $("#atk-btn").css("display", "none");
                     $("#fight-updates").css("display", "none");
                     $("body").css("background", "url(assets/images/flat,800x800,070,f.u2.jpg)");
                     $("body").css("background-size", "100% 100%");
