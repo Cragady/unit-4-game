@@ -46,6 +46,7 @@ var gameFunk = {
 
             if ((chosenEnem === true) && (charHealth > 0)){
                 $("#atk-btn").css("display", "flex");
+                $("#fight-updates").css("display", "flex");
                 $("body").css("background", "url(assets/images/Ludo_in_the_Wild_concept_8.png)");
                 $("body").css("background-size", "100% 100%");
                 $("body").css("background-repeat: no-repeat");
@@ -108,7 +109,7 @@ var gameFunk = {
                 if (charHealth <= 0){
                     $("#player-char").find(".health-show").text(0);
                     $("#rst-btn").css("display", "flex");
-                    $("#atk-btn").css("display", "none");
+                    $("#fight-updates").css("display", "none");
                     $("body").css("background", "url(assets/images/flat,800x800,070,f.u2.jpg)");
                     $("body").css("background-size", "100% 100%");
                     $("body").css("background-repeat: no-repeat");
@@ -170,6 +171,7 @@ var gameFunk = {
             readyChar.append(newHead.text("Choose your Character!"));
             newHead.attr("class", "col-12");
             $("#pictures-row").css("display", "flex");
+            $("#fight-updates").css("display", "none");
             $("#rst-btn").css("display", "none");
             $("#fight-log").empty();
         });
