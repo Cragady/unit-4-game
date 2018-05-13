@@ -47,7 +47,7 @@ var gameFunk = {
             if ((chosenEnem === true) && (charHealth > 0)){
                 $("#atk-btn").css("display", "flex");
                 $("#fight-updates").css("display", "flex");
-                $("body").css("background", "url(assets/images/Ludo_in_the_Wild_concept_8.png)");
+                $("body").css("background", "url(assets/images/Ludo_in_the_Wild_concept_8.jpg)");
                 $("body").css("background-size", "100% 100%");
                 $("body").css("background-repeat: no-repeat");
             };
